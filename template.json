@@ -1,0 +1,322 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualNetworks_sentiaVN_NTU_name": {
+            "defaultValue": "sentiaVN_NTU",
+            "type": "String"
+        },
+        "storageAccounts_sentiastorageaccountntu_name": {
+            "defaultValue": "sentiastorageaccountntu",
+            "type": "String"
+        },
+        "networkSecurityGroups_sentia_ntu_networksecgroup_name": {
+            "defaultValue": "sentia_ntu_networksecgroup",
+            "type": "String"
+        },
+        "subnets_Subnet_ntu1_name": {
+            "defaultValue": "Subnet_ntu1",
+            "type": "String"
+        },
+        "subnets_Subnet_ntu3_name": {
+            "defaultValue": "Subnet_ntu3",
+            "type": "String"
+        },
+        "subnets_Subnet_ntu2_name": {
+            "defaultValue": "Subnet_ntu2",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "comments": "Generalized from resource: '/subscriptions/9b514cb3-ec1d-4449-b317-24c202d80943/resourceGroups/Sentia_NTU_RG/providers/Microsoft.Network/networkSecurityGroups/sentia_ntu_networksecgroup'.",
+            "type": "Microsoft.Network/networkSecurityGroups",
+            "name": "[parameters('networkSecurityGroups_sentia_ntu_networksecgroup_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "westeurope",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "6fdbc2f6-b3ce-4eee-86f2-f55119058cb5",
+                "securityRules": [],
+                "defaultSecurityRules": [
+                    {
+                        "name": "AllowVnetInBound",
+                        "etag": "W/\"e18d42c9-1bce-49cb-9c08-7f114fa1aecf\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowAzureLoadBalancerInBound",
+                        "etag": "W/\"e18d42c9-1bce-49cb-9c08-7f114fa1aecf\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow inbound traffic from azure load balancer",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "AzureLoadBalancer",
+                            "destinationAddressPrefix": "*",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllInBound",
+                        "etag": "W/\"e18d42c9-1bce-49cb-9c08-7f114fa1aecf\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all inbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Inbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowVnetOutBound",
+                        "etag": "W/\"e18d42c9-1bce-49cb-9c08-7f114fa1aecf\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to all VMs in VNET",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "VirtualNetwork",
+                            "destinationAddressPrefix": "VirtualNetwork",
+                            "access": "Allow",
+                            "priority": 65000,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "AllowInternetOutBound",
+                        "etag": "W/\"e18d42c9-1bce-49cb-9c08-7f114fa1aecf\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Allow outbound traffic from all VMs to Internet",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "Internet",
+                            "access": "Allow",
+                            "priority": 65001,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    },
+                    {
+                        "name": "DenyAllOutBound",
+                        "etag": "W/\"e18d42c9-1bce-49cb-9c08-7f114fa1aecf\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "description": "Deny all outbound traffic",
+                            "protocol": "*",
+                            "sourcePortRange": "*",
+                            "destinationPortRange": "*",
+                            "sourceAddressPrefix": "*",
+                            "destinationAddressPrefix": "*",
+                            "access": "Deny",
+                            "priority": 65500,
+                            "direction": "Outbound",
+                            "sourcePortRanges": [],
+                            "destinationPortRanges": [],
+                            "sourceAddressPrefixes": [],
+                            "destinationAddressPrefixes": []
+                        }
+                    }
+                ]
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9b514cb3-ec1d-4449-b317-24c202d80943/resourceGroups/Sentia_NTU_RG/providers/Microsoft.Network/virtualNetworks/sentiaVN_NTU'.",
+            "type": "Microsoft.Network/virtualNetworks",
+            "name": "[parameters('virtualNetworks_sentiaVN_NTU_name')]",
+            "apiVersion": "2018-02-01",
+            "location": "westeurope",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "resourceGuid": "395bff34-c58d-4885-bee9-5321743cfd0d",
+                "addressSpace": {
+                    "addressPrefixes": [
+                        "172.16.0.0/12"
+                    ]
+                },
+                "subnets": [
+                    {
+                        "name": "Subnet_ntu1",
+                        "etag": "W/\"a6710cbd-d3b1-41b3-aa4f-856aca2cdbea\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "172.16.0.0/25",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sentia_ntu_networksecgroup_name'))]"
+                            },
+                            "serviceEndpoints": []
+                        }
+                    },
+                    {
+                        "name": "Subnet_ntu3",
+                        "etag": "W/\"a6710cbd-d3b1-41b3-aa4f-856aca2cdbea\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "172.16.3.0/25",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sentia_ntu_networksecgroup_name'))]"
+                            },
+                            "serviceEndpoints": []
+                        }
+                    },
+                    {
+                        "name": "Subnet_ntu2",
+                        "etag": "W/\"a6710cbd-d3b1-41b3-aa4f-856aca2cdbea\"",
+                        "properties": {
+                            "provisioningState": "Succeeded",
+                            "addressPrefix": "172.16.2.0/25",
+                            "networkSecurityGroup": {
+                                "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sentia_ntu_networksecgroup_name'))]"
+                            },
+                            "serviceEndpoints": []
+                        }
+                    }
+                ],
+                "virtualNetworkPeerings": [],
+                "enableDdosProtection": false,
+                "enableVmProtection": false
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sentia_ntu_networksecgroup_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9b514cb3-ec1d-4449-b317-24c202d80943/resourceGroups/Sentia_NTU_RG/providers/Microsoft.Storage/storageAccounts/sentiastorageaccountntu'.",
+            "type": "Microsoft.Storage/storageAccounts",
+            "sku": {
+                "name": "Standard_RAGRS",
+                "tier": "Standard"
+            },
+            "kind": "Storage",
+            "name": "[parameters('storageAccounts_sentiastorageaccountntu_name')]",
+            "apiVersion": "2018-03-01-preview",
+            "location": "westeurope",
+            "tags": {},
+            "scale": null,
+            "properties": {
+                "networkAcls": {
+                    "bypass": "AzureServices",
+                    "virtualNetworkRules": [],
+                    "ipRules": [],
+                    "defaultAction": "Allow"
+                },
+                "supportsHttpsTrafficOnly": true,
+                "encryption": {
+                    "services": {
+                        "file": {
+                            "enabled": true
+                        },
+                        "blob": {
+                            "enabled": true
+                        }
+                    },
+                    "keySource": "Microsoft.Storage"
+                }
+            },
+            "dependsOn": []
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9b514cb3-ec1d-4449-b317-24c202d80943/resourceGroups/Sentia_NTU_RG/providers/Microsoft.Network/virtualNetworks/sentiaVN_NTU/subnets/Subnet_ntu1'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_sentiaVN_NTU_name'), '/', parameters('subnets_Subnet_ntu1_name'))]",
+            "apiVersion": "2018-02-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "172.16.0.0/25",
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sentia_ntu_networksecgroup_name'))]"
+                },
+                "serviceEndpoints": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_sentiaVN_NTU_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sentia_ntu_networksecgroup_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9b514cb3-ec1d-4449-b317-24c202d80943/resourceGroups/Sentia_NTU_RG/providers/Microsoft.Network/virtualNetworks/sentiaVN_NTU/subnets/Subnet_ntu3'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_sentiaVN_NTU_name'), '/', parameters('subnets_Subnet_ntu3_name'))]",
+            "apiVersion": "2018-02-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "172.16.3.0/25",
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sentia_ntu_networksecgroup_name'))]"
+                },
+                "serviceEndpoints": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_sentiaVN_NTU_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sentia_ntu_networksecgroup_name'))]"
+            ]
+        },
+        {
+            "comments": "Generalized from resource: '/subscriptions/9b514cb3-ec1d-4449-b317-24c202d80943/resourceGroups/Sentia_NTU_RG/providers/Microsoft.Network/virtualNetworks/sentiaVN_NTU/subnets/Subnet_ntu2'.",
+            "type": "Microsoft.Network/virtualNetworks/subnets",
+            "name": "[concat(parameters('virtualNetworks_sentiaVN_NTU_name'), '/', parameters('subnets_Subnet_ntu2_name'))]",
+            "apiVersion": "2018-02-01",
+            "scale": null,
+            "properties": {
+                "provisioningState": "Succeeded",
+                "addressPrefix": "172.16.2.0/25",
+                "networkSecurityGroup": {
+                    "id": "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sentia_ntu_networksecgroup_name'))]"
+                },
+                "serviceEndpoints": []
+            },
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworks_sentiaVN_NTU_name'))]",
+                "[resourceId('Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroups_sentia_ntu_networksecgroup_name'))]"
+            ]
+        }
+    ]
+}
