@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+         "virtualNetworks_sentiaVN_NTU_name": {
+            "value": "sentiaVN_NTUV1"
+        },
+        "storageAccounts_sentiastorageaccountntu_name": {
+            "value": "sentiastorageaccountnt"
+        },
+        "networkSecurityGroups_sentia_ntu_networksecgroup_name": {
+            "value": "sentia_ntu_networksecgroupv1"
+        },
+        "subnets_Subnet_ntu1_name": {
+            "value": "Subnet_ntu1"
+        },
+        "subnets_Subnet_ntu3_name": {
+            "value": "Subnet_ntu3"
+        },
+        "subnets_Subnet_ntu2_name": {
+            "value": "Subnet_ntu2"
+			}
+    }
+}
