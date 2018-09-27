@@ -1,0 +1,35 @@
+{
+    "properties": {
+        "displayName": "Sentia-NTU_Policy",
+        "policyType": "Custom",
+        "description": "This policy to limit resource type creation to only Compute,Network and Storage",
+        "metadata": {
+            "category": "General"
+        },
+        "parameters": {},
+        "policyRule": {
+            "if": {
+                "allOf": [
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Storage*"
+                    },
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Compute*"
+                    },
+                    {
+                        "field": "type",
+                        "equals": "Microsoft.Network*"
+                    }
+                ]
+            },
+            "then": {
+                "effect": "deny"
+            }
+        }
+    },
+    "id": "/subscriptions/9b514cb3-ec1d-4449-b317-24c202d80943/providers/Microsoft.Authorization/policyDefinitions/Sentia-NTU_Policy",
+    "type": "Microsoft.Authorization/policyDefinitions",
+    "name": "Sentia-NTU_Policy"
+}
