@@ -6,14 +6,14 @@
     "properties": {
         "displayName": "Policy Assignment task",
         "policyDefinitionId": "/subscriptions/9b514cb3-ec1d-4449-b317-24c202d80943/providers/Microsoft.Authorization/policyDefinitions/Sentia-NTU_Policy",
-        "scope": "/subscriptions/9b514cb3-ec1d-4449-b317-24c202d80943/resourceGroups/NTUTestRG",
+        "scope": "/subscriptions/9b514cb3-ec1d-4449-b317-24c202d80943/resourceGroups/Sentia_NTU_RG",
         "parameters": {},
         "description": "Test assignment to RG",
         "metadata": {
             "assignedBy": "Nick Maximillian"
         }
     },
-    "id": "/subscriptions/9b514cb3-ec1d-4449-b317-24c202d80943/resourceGroups/NTUTestRG/providers/Microsoft.Authorization/policyAssignments/Sentia-NTU_Policy",
+    "id": "/subscriptions/9b514cb3-ec1d-4449-b317-24c202d80943/resourceGroups/Sentia_NTU_RG/providers/Microsoft.Authorization/policyAssignments/Sentia-NTU_Policy",
     "type": "Microsoft.Authorization/policyAssignments",
     "name": "Sentia-NTU_Policy"
 }
